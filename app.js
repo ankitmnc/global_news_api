@@ -22,3 +22,5 @@ app.get('/get_news',(req,res)=>{
 app.get('/',(req,res)=>{
     res.send("Server is healthy")
 })
+
+module.exports=app;
