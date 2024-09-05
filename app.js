@@ -8,7 +8,7 @@ app.listen(port, "0.0.0.0", () => {
     console.log(`Server started listening at ${port}.`);
 });
 
-app.get('/get_news',(req,res)=>{
+app.post('/get_news',(req,res)=>{
     var category = req.query.category; 
     axios
     .get(`https://newsapi.org/v2/everything?q=${category}&apiKey=e719b9cf112540d59dc4ca8e87e383ce`)
