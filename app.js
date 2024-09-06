@@ -1,12 +1,17 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
+const cors = require('cors');
 
 let port = process.env.PORT || 5000;
 
-app.listen(port, "0.0.0.0", () => {
-    console.log(`Server started listening at ${port}.`);
-});
+app.use(cors({
+    origin: '*',  // Allow requests from your frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Allowed HTTP methods
+    allowedHeaders: ['Content-Type','Authorization']  // Allowed headers
+  }));
+
+app.options('*', cors());
 
 app.get('/get_news',(req,res)=>{
     var category = req.query.category; 
@@ -22,6 +27,10 @@ app.get('/get_news',(req,res)=>{
 app.get('/',(req,res)=>{
     res.send("Server is healthy")
 })
+
+app.listen(port, "0.0.0.0", () => {
+    console.log(`Server started listening at ${port}.`);
+});
 
 module.exports=app;
 
